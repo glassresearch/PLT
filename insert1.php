@@ -10,12 +10,15 @@
         <fieldset>
  	<legend>Action Attribute</legend>
 	<input type="text" name="name" id="name">
-	<input type="text" name="passwrd" id="passwrd">
- 	<input name = "Submit" id ="Submit" type="submit" 
-       value="Submit" >
-	<input name = "Register" id ="Register" type="submit" 
-       value="Register" >
+	<input type="Password" name="passwrd" id="passwrd">
+ 	<input name = "Submit" type="submit" value="Submit" id 
+                  ="Submit">
+ 
+	<button type="button"= "Register" type="submit" 
+	value="Register"     
+     id ="Register" onclick="window.location='register.php''">Register
 
+	</fieldset>	
    </form>
 </body>
 </html>
@@ -26,24 +29,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <?php
 $servername = "localhost";
 $dbname = "arpi_database";
@@ -51,80 +36,48 @@ $username = "root";
 $password = "";
 
 // Create connection
-$con = mysqli_connect($servername, $username, $password, $dbname);
+$con = mysqli_connect($servername ,$username ,$password ,$dbname );
 
 // Check connection
 if (mysqli_connect_errno())
 {
 echo "Failed to connect to MySQL: " . mysqli_connect_error();
-exit();
-}
-if($_POST)
-{ 
-  if(isset($_POST['Submit']))
-  { 
-    // process update 
-    $name= $_POST['name']; 
-  $passwrd= $_POST['passwrd']; 
-
-  $query= "INSERT INTO employee_login(Username, Password)   
-           VALUES ('$name', '$passwrd')";
-
-  if(mysqli_query($con, $query))
-  {
-    echo $name . "'s data has been added"; }
-  else {
-    echo "bad" ; }
-
-  mysqli_close($con);
-
-  } 
-else if(isset($_POST['Register'])) { 
-
- echo	"<html>";
-echo "<head>";
-echo '<meta charset="UTF-8">';
-echo "<title>Forms</title>";
-echo "</head>";
-echo "<body>";
-echo "<h3>Register Yourself.....!!!</h2>";
-echo '<form action="insert1.php" method = "post">';
-echo "<fieldset>";
-echo "<legend>Registration Form</legend>";
-echo 'BB No. :<input type="text" name="bb_no" id="bb_no"></br>';
-echo "</br>";
-
-echo 'Name :  <input type="text" name="name" id="name"></br>';
-echo "</br>";
-echo 'Email:  <input type="text" name="email" id="email"></br>';
-echo "</br>";
-
-echo 'Team:  <input type="text" name="team" id="team"></br>';
-echo "</br>";
-
-echo 'Manager ID:  <input type="text" name="m_id" id="m_id">';
-echo "</br></br>";
-
-echo '<input name = "Register" type="submit" value="Register"'; echo "id"; 
-echo '="Register">';
-	
-      
-
-echo "</fieldset>";	
-echo "</form>";
-echo "</html>";
- 	
-} 
-
 }
 
 
-  
+$bb_no= $_POST['name']; 
+$passwrd= $_POST['passwrd']; 
+
+$query1 = "SELECT * FROM employee_login where Username = '$bb_no'";
+$query2 = "SELECT * FROM employee_login where Username = '$bb_no' AND  Password ='$passwrd'";
+
+
+$result1 = mysqli_query($con, $query1);
+$values1 = mysqli_num_rows($result1);
+$result2 = mysqli_query($con, $query2);
+$values2 = mysqli_num_rows($result2);
+
+
+
+
+if (mysqli_num_rows($result1))
+ {
+   if (mysqli_num_rows($result2))
+    {
+    echo "Login Successful";
+    }
+   else
+     echo "Username & Password does not match";
+ }
+else
+ echo "You have not registered";
+ 
+
+
+mysqli_close($con);
+
+
 ?>
 
-
-	    
-
-	
 
 
