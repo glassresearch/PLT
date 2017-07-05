@@ -3,30 +3,26 @@
  <head>
 	<meta charset="UTF-8">
 	<title>Forms</title>
+	<script type="text/javascript">
+  function submitForm(action) {
+    var regform = document.getElementById('form1');
+    regform.action = action;
+    regform.submit();
+  }
+</script>
 </head>
 <body>
         <marquee><h2>WELCOME.....!!!</h2></marquee>
- 	<form action="insert1.php" method = "post">
-        <fieldset>
- 	<legend>Action Attribute</legend>
-	<input type="text" name="name" id="name">
-	<input type="Password" name="passwrd" id="passwrd">
- 	<input name = "Submit" type="submit" value="Submit" id 
-                  ="Submit">
- 
-	<button type="button"= "Register" type="submit" 
-	value="Register"     
-     id ="Register" onclick="window.location='register.php''">Register
-
-	</fieldset>	
-   </form>
+	
+ 	<input type="text" name="name" id="name">
+	<input type="Password" name="passwrd" id="passwrd"> </p>
+	<form id="form1">
+  <!-- ... -->
+  <input type="button" onclick="submitForm('login.php')" value="Submit" />
+  <input type="button" onclick="submitForm('register.php')" value="Register" />
+</form>
 </body>
 </html>
-
-	    
-
-	
-
 
 
 <?php
@@ -34,6 +30,7 @@ $servername = "localhost";
 $dbname = "arpi_database";
 $username = "root";
 $password = "";
+
 
 // Create connection
 $con = mysqli_connect($servername ,$username ,$password ,$dbname );
@@ -44,7 +41,7 @@ if (mysqli_connect_errno())
 echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 
-
+if(isset($_GET["submit"])) {
 $bb_no= $_POST['name']; 
 $passwrd= $_POST['passwrd']; 
 
@@ -72,7 +69,7 @@ if (mysqli_num_rows($result1))
 else
  echo "You have not registered";
  
-
+}
 
 mysqli_close($con);
 
@@ -80,5 +77,13 @@ mysqli_close($con);
 ?>
 
 
+
+
+
+
+
+	    
+
+	
 
 

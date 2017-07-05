@@ -1,34 +1,3 @@
-<!DOCTYPE html>
-<html>
- <head>
-	<meta charset="UTF-8">
-	<title>Forms</title>
-	<script type="text/javascript">
-  function submitForm(action) {
-    var form = document.getElementById('form1');
-    form.action = action;
-    form.submit();
-  }
-</script>
-</head>
-<body>
-        <marquee><h2>WELCOME.....!!!</h2></marquee>
- 	<input type="text" name="name" id="name">
-	<input type="Password" name="passwrd" id="passwrd"> </p>
-	<form id="form1">
-  <!-- ... -->
-  <input type="button" onclick="submitForm('insert1.php')" value="Submit" />
-  <input type="button" onclick="submitForm('register1.php')" value="Register" />
-</form>
-</body>
-</html>
-
-	    
-
-	
-
-
-
 <?php
 $servername = "localhost";
 $dbname = "arpi_database";
@@ -81,5 +50,13 @@ mysqli_close($con);
 ?>
 
 
+
+
+
+
+
+	    
+
+	
 
 
