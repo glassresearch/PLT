@@ -1,3 +1,4 @@
+
 <?php
 $servername = "localhost";
 $dbname = "arpi_database";
@@ -14,7 +15,8 @@ if (mysqli_connect_errno())
 echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 
-if(isset($_GET["submit"])) {
+if(!isset($Submit)) {
+	
 $bb_no= $_POST['name']; 
 $passwrd= $_POST['passwrd']; 
 
@@ -50,13 +52,5 @@ mysqli_close($con);
 ?>
 
 
-
-
-
-
-
-	    
-
-	
 
 
