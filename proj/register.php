@@ -158,7 +158,7 @@ if(isset($_POST["submit"])) {
 
 ?>
 
-<h2>PHP Form Validation Example</h2>
+<h2>Employee Registration</h2>
 <p><span class="error">* required field.</span></p>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
   BB No.: <input type="text" name="bb_no" value="<?php echo isset($_POST['bb_no']) ? $_POST['bb_no'] : '' ?>">
